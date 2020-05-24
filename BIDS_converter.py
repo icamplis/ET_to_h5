@@ -5,6 +5,7 @@ import numpy as np
 import glob
 import json
 
+
 def edf_to_asc(path):
     """
     Convert EDF file to ASC file

@@ -6,6 +6,7 @@ import pandas as pd
 import re
 from tqdm import tqdm
 
+
 # convert ET data to BIDS format (takes a while)
 def convert_to_BIDS(path):
     subject_folders = os.listdir(path)
@@ -45,13 +46,14 @@ def data_loader(path, bids):
     exp_folder = path + '/BIDS'
 
     # Output file to save processed ET data.
-    hdf_output_file = path + '/ET_data_all_v0.h5'
+    separate_hdf_output_file = path + '/ET_data_all_v0_separate.h5'
+    combined_hdf_output_file = path + '/ET_data_all_v0_combined.h5'
 
     subj_folders = os.listdir(exp_folder)
     while '.DS_Store' in subj_folders:
         subj_folders.remove('.DS_Store')
 
-    return exp_folder, hdf_output_file, subj_folders
+    return exp_folder, separate_hdf_output_file, combined_hdf_output_file, subj_folders
 
 
 def make_dfs(sess_name, f, subj_full_path):
@@ -82,7 +84,7 @@ def get_ET_data(edf_path):
     fixes = []
     blinks = []
 
-    for line in edf:
+    for line in tqdm(edf):
         if line[0] in '0123456789':
             time = [i for i in re.split(' |\t|\n', line) if i != '' and i != '...']
             times.append(time)
@@ -149,6 +151,3 @@ def add_columns(time_df, events_df):
     mask = time_df.TIME.between(lb, ub - 1)
     s = events_df.loc[events_df.index[-1], columns].values
     time_df.loc[mask, columns] = s
-
-
-
