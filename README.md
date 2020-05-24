@@ -10,7 +10,7 @@ pip3 install --user -r /path/requirements.txt
 Download the **EyeLink Developers Kit for Mac OS X** from [here](https://www.sr-support.com/forum/downloads/eyelink-display-software/45-eyelink-developers-kit-for-mac-os-x-mac-os-x-display-software?15-EyeLink-Developers-Kit-for-Mac-OS-X=).
 
 ## Usage
-Navigate to the directory containing ET_h5_converter.py in a terminal and run the script with the path to the ET data directory as a command line arguement. Make sure that you haven't already used this to create a hdf file in this directory. If you wish to also create the BIDS directory at the same time, make sure that this directory doesn't already exist and include ```bash --BIDS true``` (default false) as a command line argument. If you wish to create the combined files, include ```bash --combined true``` (default false). If you wish to __not__ create the separate files, include ```bash --separate false``` (default true). For example:
+Navigate to the directory containing ET_h5_converter.py in a terminal and run the script with the path to the ET data directory as a command line arguement. Make sure that you haven't already used this to create a hdf file in this directory. If you wish to also create the BIDS directory at the same time, make sure that this directory doesn't already exist and include ```bash --BIDS true``` (default false) as a command line argument. If you wish to create the combined files, include ```bash --combined true``` (default false). If you wish to [not] create the separate files, include ```bash --separate false``` (default true). For example:
 ```bash
 python3 BIDS_converter.py --path /Users/isabellacamplisson/Documents/AdolphsLab/Eyetracking/ET_data --BIDS true --combined true
 ```
